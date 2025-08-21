@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Student Performance Prediction using Python, Machine Learning, and Flask" />
+    <title>Student Performance Prediction | Landing Page</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #0f5132;
+            --light-bg: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-color: #eaeaea;
+            --text-dark: #222;
+            --text-gray: #555;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* Navbar */
+        header {
+            background: var(--light-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 100%;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            margin-right: 2rem;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-links a {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--light-bg);
+            padding: 5rem 2rem;
+            text-align: center;
+            max-width: var(--max-width);
+            margin: auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .hero button:hover, .hero button:focus {
+            background: #1558c1;
+            outline: none;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: var(--max-width);
+            margin: auto;
+        }
+
+        section h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-item {
+            background: var(--light-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .tech-item h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Workflow */
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .workflow-step i {
+            font-size: 1.4rem;
+            color: var(--primary);
+            flex-shrink: 0;
+            background: var(--light-gray);
+            padding: 0.8rem;
+            border-radius: 50%;
+        }
+
+        /* About */
+        #about p {
+            text-align: center;
+            max-width: 900px;
+            margin: auto;
+            color: var(--text-gray);
+            font-size: 0.98rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light-gray);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: white;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                padding: 1rem;
+                width: 200px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                margin-left: 1rem;
+            }
+
+            .social-links {
+                display: none;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎓 Student Performance Prediction</h1>
+    <nav>
+        <ul>
+            <li><a href="#tech">Tech Stack</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#workflow">Workflow</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+        <div class="social-links">
+            <a href="https://instagram.com/shhh_its_shrii" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/shreeharsh-shivpuje-95a397207/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/shreeharsh-ms" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://yourportfolio.com" target="_blank"><i class="fas fa-user-circle"></i></a>
+        </div>
+        <button class="hamburger" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+    </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <h2>Data-Driven Academic Predictions</h2>
+    <p>Harness Machine Learning to anticipate student outcomes and enhance learning experiences.</p>
+    <a href="/predict"><button>Try the Prediction Tool</button></a>
+</section>
+
+<!-- Tech Stack -->
+<section id="tech">
+    <h3>Technology Stack</h3>
+    <div class="tech-grid">
+        <div class="tech-item"><i class="fab fa-python"></i><h4>Python 3.x</h4><p>Core programming language for model creation and backend development.</p></div>
+        <div class="tech-item"><i class="fas fa-database"></i><h4>Pandas / NumPy</h4><p>Efficient libraries for data manipulation and numerical computation.</p></div>
+        <div class="tech-item"><i class="fas fa-brain"></i><h4>scikit-learn</h4><p>Reliable ML library used for preprocessing, training, and evaluation.</p></div>
+        <div class="tech-item"><i class="fas fa-cogs"></i><h4>Flask</h4><p>Lightweight Python framework serving predictions via web.</p></div>
+        <div class="tech-item"><i class="fas fa-code-branch"></i><h4>dill</h4><p>Serialization of ML models and preprocessing pipelines.</p></div>
+        <div class="tech-item"><i class="fas fa-clipboard-check"></i><h4>GridSearchCV</h4><p>Model optimization and hyperparameter tuning for best performance.</p></div>
+    </div>
+</section>
+
+<!-- Features -->
+<section id="features">
+    <h3>Project Features</h3>
+    <div class="features">
+        <div class="feature-card"><h4>Data Ingestion</h4><p>Automated data loading and splitting from raw datasets into usable formats.</p></div>
+        <div class="feature-card"><h4>Preprocessing</h4><p>Handles missing values, scales features, and encodes categorical variables.</p></div>
+        <div class="feature-card"><h4>Multiple Models</h4><p>Tests different regression models for optimal prediction accuracy.</p></div>
+        <div class="feature-card"><h4>Hyperparameter Tuning</h4><p>Uses GridSearchCV for precise model configuration.</p></div>
+        <div class="feature-card"><h4>Logging</h4><p>Full activity tracking for debugging, transparency, and monitoring.</p></div>
+        <div class="feature-card"><h4>Error Handling</h4><p>Custom exception handling for resilient and stable execution.</p></div>
+    </div>
+</section>
+
+<!-- Workflow -->
+<section id="workflow">
+    <h3>Workflow</h3>
+    <div class="workflow">
+        <div class="workflow-step"><i class="fas fa-file-import"></i><div><h4>1. Data Ingestion</h4><p>Read raw CSV files, split into training and test sets, and store artifacts.</p></div></div>
+        <div class="workflow-step"><i class="fas fa-sliders-h"></i><div><h4>2. Data Transformation</h4><p>Imputation, scaling, encoding — transforming raw input into ML-ready format.</p></div></div>
+        <div class="workflow-step"><i class="fas fa-robot"></i><div><h4>3. Model Training</h4><p>Train multiple models, compare, and select the one with the highest R² score.</p></div></div>
+        <div class="workflow-step"><i class="fas fa-chart-line"></i><div><h4>4. Evaluation</h4><p>Evaluate performance, log metrics, and save the trained model pipeline.</p></div></div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about">
+    <h3>About the Project</h3>
+    <p>
+        This Student Performance Prediction project is a complete end-to-end ML pipeline, developed with a modular architecture.
+        It offers educators and researchers insights to predict and analyze student outcomes, helping improve academic planning.
+        The system uses best practices in ML deployment, robust preprocessing pipelines, efficient serialization, scalable code structure, logging, and error handling.
+    </p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2025 Student Performance Prediction | Designed with ❤️ for impactful education</p>
+    <p><a href="/home">Go to Prediction Tool</a></p>
+</footer>
+
+<!-- Mobile Menu Toggle Script -->
+<script>
+    document.querySelector(".hamburger").addEventListener("click", () => {
+        document.querySelector("nav ul").classList.toggle("show");
+    });
+</script>
+
+</body>
+</html>
